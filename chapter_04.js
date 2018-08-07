@@ -80,26 +80,22 @@ function nth(list, index) {
   }
 }
 
-/*
-  
-  To be completed yet!
-
 function deepEqual(obj_a, obj_b) {
   if (obj_a == null || obj_b == null) {
-    console.log('one of the objects is null')
-    return undefined;
+    return false;
   } else if ((typeof(obj_a) == "object") && (typeof(obj_b) == "object")) {
-    let keys_a = obj_a.keys(), keys_b = obj_b.keys();
+    let keys_a = Object.keys(obj_a), keys_b = Object.keys(obj_b);
     let answer = true;
+
     if (keys_a.length != keys_b.length) {
       return false;
     } else {
       for (let i = 0; i < keys_a.length; i++) {
-        answer = answer && deepEqual(obj_a[i], obj_b[i]);    
+        answer = answer && deepEqual(obj_a[keys_a[i]], obj_b[keys_b[i]]);    
       }
       return answer;
     }
   } else {
     return obj_a === obj_b;
   }
-}*/
+}
