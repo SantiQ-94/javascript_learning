@@ -50,23 +50,24 @@ class Group {
     return group;
   }
 
-  Symbol.iterator = function() {
+  [Symbol.iterator]() {
     return new GroupIterator(this);
-  };
+  }
 }
+
 
 class GroupIterator {
   constructor(group) {
     this.group = group;
-    this.element = null;
   }
 
   next() {
-    if (!this.group.has(this.element)) return {done: true};
-
-    let value = {value: this.group[this.group.values.indexOf(this.element)]
-                 group: this.group.delete(this.group.values[0]);
+    if (this.group.values.length == 0) {
+      return {done: true};
+    } else {
+      let value = {value: this.group.values.shift(),
+                   done:false};
+      return value;
     }
-    return {value, done:false};
   }
 }
