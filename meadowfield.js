@@ -155,3 +155,26 @@ function newRobot({place, parcels}, route) {
   }
   return {direction: route[0], memory: route.slice(1)};
 }
+
+
+class PGroup {
+  constructor(values = []) {
+    this.values = values;
+  }
+
+  add(element) {
+    if (this.has(element)) return this;
+    return new PGroup(this.values.concat([element]));
+  }
+
+  delete(element) {
+    if (!this.has(element)) return this;
+    return new PGroup(this.values.filter(v => v !== element));
+  }
+
+  has(element) {
+    return this.values.includes(element);
+  }
+}
+
+PGroup.empty = new PGroup([]);
