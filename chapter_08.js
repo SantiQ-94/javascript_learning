@@ -1,6 +1,6 @@
 function parseINI(string) {
   let result = {};  //empty object that will hold the result.
-  let section = {};
+  let section = result
   string.split(/\r?\n/).forEach(line => {
     let match;
     if (match = line.match(/^(\w+)=(.*)$/)) {
